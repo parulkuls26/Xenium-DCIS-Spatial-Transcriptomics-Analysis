@@ -1,0 +1,61 @@
+Overview
+This repository contains an R-based analysis of 10X Xenium spatial transcriptomics data from a breast ductal carcinoma in situ (DCIS) tissue sample. The analysis covers quality control, unsupervised clustering, cell type annotation, and spatial proximity analysis, with a focus on the role of myoepithelial cells in the DCIS tumour microenvironment.
+Data
+Data were retrieved from:
+
+Janesick, A. et al., High resolution mapping of the tumor microenvironment using integrated single-cell, spatial and in situ analysis. Nat Commun. (2023)
+
+The dataset contains:
+
+313 genes (targeted Xenium panel)
+167,780 cells (161,789 after QC filtering)
+Analysis Pipeline
+
+1. Quality Control — filtering cells based on transcript counts, unique gene counts, and negative probe ratios
+
+2. Normalisation & Feature Selection — log-normalisation and variable gene identification
+
+3. Data Sketching — representative subset of 75,000 cells for efficient clustering
+
+4. Dimensionality Reduction & Clustering — PCA, Louvain clustering (32 clusters), and UMAP visualisation
+
+5. Cell Type Annotation — differential expression analysis and marker-based annotation (15 cell types identified)
+
+6. Spatial Proximity Analysis — k-nearest neighbour distance analysis between myoepithelial cells and all other cell types
+
+Key Findings
+
+161,789 cells retained after QC filtering
+32 clusters identified, annotated into 15 cell types
+Most abundant cell types: Glandular cells, T cells, Fibroblasts
+Myoepithelial cells are significantly closer to Glandular cells (median distance: 13.39 µm) than to any other cell type, confirming their role as a protective monolayer around ductal structures
+
+Requirements
+
+R version
+R ≥ 4.4.0
+R Packages
+
+Visualisation: ggplot2, ggpubr, ggsci, patchwork
+
+Data manipulation: plyr, dplyr, tidyverse, magrittr, Matrix
+
+Spatial analysis: sf, FNN
+
+Single-cell analysis: Seurat
+
+Utilities: DT
+
+Usage
+
+1. Clone the repository
+
+2. Install all required packages by running the dependency installation chunk at the top of the notebook
+
+3. Update the file paths in the data loading chunks to match your local directory
+
+4. Run the notebook chunk by chunk or knit to HTML
+
+License
+
+This analysis was conducted for educational purposes as part of a spatial transcriptomics practical.
